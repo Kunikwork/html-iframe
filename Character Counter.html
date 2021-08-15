@@ -1,0 +1,108 @@
+<!-- Character counter v1.1 -->
+      
+         <textarea class="textarea" name="textarea" id="counter-input" cols="30" rows="10"
+placeholder="Type or Paste Your Content Here" 
+autofocus="" 
+spellcheck="false"
+
+
+
+
+style="
+margin-top: 0px; 
+margin-bottom: 0px;
+height: 65%;
+width: 80%;
+text-transform:capitalize;
+
+"
+></textarea>
+         
+         
+<br> </br>
+         <label for="counter-input" class="label">Characters: <span id="counter-display" class="tag is-success">0</span></label>
+          
+          <a> | Words:</a>
+          <span id="word_count">0</span> &nbsp; &nbsp;
+          
+          
+          <button onclick="myFunction()">Copy text</button>
+      
+          
+          
+          
+          
+          
+          
+          
+          
+         
+        
+       
+<script>
+  
+  // DOM element
+const textareaEl = document.querySelector('textarea');
+const wordCounterEl = document.querySelector('#word_count');
+
+// Get the value of textarea
+// and calculate the total word
+const getTotalWord = (element) => {
+  let text = element.value;
+  let totalWord = text.split(' ').length;
+
+  return text === '' ? 0 : totalWord;
+}
+
+// Update the word counter element
+const setWordCounter = (element, value) => {
+  element.textContent = value;
+} 
+
+// Fire this function when the user is typing
+textareaEl.addEventListener('keyup', () => {
+  let totalWord = getTotalWord(textareaEl);
+  setWordCounter(wordCounterEl, totalWord);
+});
+  
+</script>
+            
+  
+  
+
+<script>
+(() => {
+  const counter = (() => {
+    const input = document.getElementById('counter-input'),
+      display = document.getElementById('counter-display'),
+      changeEvent = (evt) => display.innerHTML = evt.target.value.length,
+      getInput = () => input.value,
+      countEvent = () => input.addEventListener('keyup', changeEvent),
+      init = () => countEvent();
+
+    return {
+      init: init
+    }
+
+  })();
+
+  counter.init();
+
+})();
+
+</script>
+
+
+
+
+<script>
+
+function myFunction() {
+  var copyText = document.getElementById("counter-input");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  
+}
+  
+</script>
